@@ -1,9 +1,10 @@
-//
+/
 //  PickerDialog.swift
+//  Equum
 //
-//  Created by Loren Burton on 02/08/2016.
+//  Created by Glauco Roberto Munsberg on 21/05/17.
+//  Copyright © 2017 Indeorum. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import QuartzCore
@@ -131,7 +132,7 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         let currentTransform = self.dialogView.layer.transform
         
         let startRotation = (self.value(forKeyPath: "layer.transform.rotation.z") as? NSNumber) as? Double ?? 0.0
-        let rotation = CATransform3DMakeRotation((CGFloat)(-startRotation + M_PI * 270 / 180), 0, 0, 0)
+        let rotation = CATransform3DMakeRotation((CGFloat)(-startRotation + Double.pi * 270 / 180), 0, 0, 0)
         
         self.dialogView.layer.transform = CATransform3DConcat(rotation, CATransform3DMakeScale(1, 1, 1))
         self.dialogView.layer.opacity = 1
@@ -197,12 +198,12 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
         //Title
         self.titleLabel = UILabel(frame: CGRect(x: 10, y: 10, width: 280, height: 30))
         self.titleLabel.textAlignment = NSTextAlignment.center
-        self.titleLabel.textColor = UIColor.FBBlue()
-        self.titleLabel.font = UIFont(name: "AvenirNext-Medium", size: 16)
+        self.titleLabel.textColor = UIColor.black
+        self.titleLabel.font = UIFont(name: "Helvetica", size: 16)
         dialogContainer.addSubview(self.titleLabel)
         
         self.picker = UIPickerView(frame: CGRect(x: 0, y: 30, width: 0, height: 0))
-        self.picker.setValue(UIColor.FBGray(), forKeyPath: "textColor")
+        self.picker.setValue(UIColor.gray, forKeyPath: "textColor")
         self.picker.autoresizingMask = UIViewAutoresizing.flexibleRightMargin
         self.picker.frame.size.width = 300
         
@@ -225,9 +226,9 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             width: buttonWidth,
             height: kPickerDialogDefaultButtonHeight
         )
-        self.cancelButton.setTitleColor(UIColor.FBBlue(), for: UIControlState())
-        self.cancelButton.setTitleColor(UIColor.FBBlue(), for: UIControlState.highlighted)
-        self.cancelButton.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 15)
+        self.cancelButton.setTitleColor(UIColor.black, for: UIControlState())
+        self.cancelButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
+        self.cancelButton.titleLabel!.font = UIFont(name: "Helvetica", size: 15)
         self.cancelButton.layer.cornerRadius = kPickerDialogCornerRadius
         self.cancelButton.addTarget(self, action: #selector(PickerDialog.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
         container.addSubview(self.cancelButton)
@@ -240,9 +241,9 @@ class PickerDialog: UIView, UIPickerViewDataSource, UIPickerViewDelegate {
             height: kPickerDialogDefaultButtonHeight
         )
         self.doneButton.tag = kPickerDialogDoneButtonTag
-        self.doneButton.setTitleColor(UIColor.FBBlue(), for: UIControlState())
-        self.doneButton.setTitleColor(UIColor.FBBlue(), for: UIControlState.highlighted)
-        self.doneButton.titleLabel!.font = UIFont(name: "AvenirNext-Medium", size: 15)
+        self.doneButton.setTitleColor(UIColor.black, for: UIControlState())
+        self.doneButton.setTitleColor(UIColor.black, for: UIControlState.highlighted)
+        self.doneButton.titleLabel!.font = UIFont(name: "Helvetica", size: 15)
         self.doneButton.layer.cornerRadius = kPickerDialogCornerRadius
         self.doneButton.addTarget(self, action: #selector(PickerDialog.buttonTapped(_:)), for: UIControlEvents.touchUpInside)
         container.addSubview(self.doneButton)
